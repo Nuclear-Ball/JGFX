@@ -1,8 +1,8 @@
-#JGFX - a very simple 3D graphics library!
+# JGFX - a very simple 3D graphics library!
 
 **WARNING!** The library is still in alpha, so be ready for a lots of bugs, and other stuff not working.
 
-##The triangle example:
+## The triangle example:
 ```C++
 #include <string>
 #include <vector>
@@ -54,7 +54,7 @@ int main() {
 	}
 }
 ```
-##Installation
+## Installation
 JGFX is a header-only library, so you only need to copy this repo to your include directory. But before using it you also should install following dependencies:
     -GLM
     -GLFW
@@ -63,7 +63,7 @@ JGFX is a header-only library, so you only need to copy this repo to your includ
 Also it works(for now) only on linux with clang compiler and c++20 
 (at least its what it was tested with, so it might, or might not work with other compilers and operating systems)
 
-##User input handling
+## User input handling
 It hasn't been implemented yet(but will be soon), so for now you can use raw GLFW functions for that. The GLFW window handle can be obtained from a JGFX handle like this:
 ```C++
 GLFWwindow* raw = your_jgfx_win.handle().data->win;
@@ -73,7 +73,7 @@ Or if you using low level API:
 GLFWwindow* raw = your_lljgfx_win_handle.data->win;
 ```
 
-##JGFX Example 2
+## JGFX Example 2
 This example shows textures, framebuffers, shader uniforms
 ```C++
 #include "JGFX/JGFX.h"
