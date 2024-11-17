@@ -6,7 +6,7 @@
 #define STBI_WINDOWS_UTF8
 #include <stb_image.h>
 
-//#include <JSerialUtils.h>
+#include <JSerialUtils.h>
 
 #include "Gpu/Texture.h"
 
@@ -107,10 +107,12 @@ namespace LLJGFX {
 			stbi_image_free(converted);
 		}
 		inline void LoadFromFile(Handle txt_handle, const std::string& path){
-			pos2d32 size_adapter = {0, 0 };
+			pos2d32 size_adapter = { 0, 0 };
 			uint8* converted = stbi_load(path.c_str(),
 										 &size_adapter.x, &size_adapter.y,
 			                             nullptr, JGFX::PIXEL_BINARY_SIZE);
+
+			
 			SetData(txt_handle, converted, size_adapter);
 			stbi_image_free(converted);
 		}
@@ -151,6 +153,11 @@ namespace LLJGFX {
 			return res;
 		}
 		inline pos2du16 GetSize(Handle txt_handle) { return Internal::get_ro_txt_data(txt_handle).size; }
+
+		inline void Copy(Handle to, Handle from) {
+			LLJGFX::Texture::SetData(to, LLJGFX::Texture::GetData(from), LLJGFX::Texture::GetSize(from));
+			LLJGFX::Texture::SetModes(to, LLJGFX::Texture::GetFilteringMode(from), LLJGFX::Texture::GetWrapMode(from));
+		}
 
 		inline Handle Make() {
 			Handle handle = { new Internal::TxtDataHolder{} };

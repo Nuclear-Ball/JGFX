@@ -90,11 +90,10 @@ namespace LLJGFX{
 										(const char*)c_uf.second.data.data(),
 										c_uf.second.data.size() / Gpu::type_size_table[(int32)c_uf.second.type]);
 				}
-
-				RebindBoundShader();
-				Gpu::PreInit::pi_sps.clear();
-				Gpu::PreInit::sh_last_handle = 1;
 			}
+			RebindBoundShader();
+			Gpu::PreInit::pi_sps.clear();
+			Gpu::PreInit::sh_last_handle = 1;
 		}
 	}
 
@@ -131,6 +130,8 @@ namespace LLJGFX{
 		}
 
 		inline void Delete(Handle program_handle) {
+			if(program_handle.data == nullptr)
+				return;
 #ifndef NDEBUG
 			Internal::CheckProgramValidity(program_handle);
 #endif

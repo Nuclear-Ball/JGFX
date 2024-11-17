@@ -8,7 +8,7 @@
 #include "Gpu/Draw.h"
 
 bool InitFunc();
-void DestroyFunc();
+//void DestroyFunc();
 
 namespace LLJGFX{
 	namespace Internal{
@@ -87,12 +87,7 @@ namespace LLJGFX{
 				dat.icon_handle = tmp.data;
 			}
 
-			//Copying the texture
-			LLJGFX::Texture::Handle ic_obj_handle = { dat.icon_handle };
-			LLJGFX::Texture::SetData(ic_obj_handle, LLJGFX::Texture::GetData(icon),
-									 LLJGFX::Texture::GetSize(icon));
-			LLJGFX::Texture::SetModes(ic_obj_handle, LLJGFX::Texture::GetFilteringMode(icon),
-			                          LLJGFX::Texture::GetWrapMode(icon));
+			LLJGFX::Texture::Copy({ dat.icon_handle }, icon);
 
 			//Actually setting it inside the GLFW
 			const std::string icon_data = LLJGFX::Texture::GetData(icon);

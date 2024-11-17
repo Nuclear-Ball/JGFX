@@ -84,6 +84,7 @@ namespace LLJGFX{
 	inline void DrawTo(Texture::Handle fb_handle, const TmpRT& target)
 		{ DrawTo(fb_handle, target.vr_handle, target.texture_bindings, target.sh_handle, target.instances); }
 
+	inline void ClearDepthBuffer(){ glClear(GL_DEPTH_BUFFER_BIT); }
 
 	inline void Clear(rgb color) {
 		const glm::vec4 c_color = color;
@@ -92,6 +93,7 @@ namespace LLJGFX{
 		             c_color.b,
 		             c_color.a);
 		glClear(GL_COLOR_BUFFER_BIT);
+		glClear(GL_DEPTH_BUFFER_BIT);
 	}
 	inline void Clear(uint8 r, uint8 g, uint8 b, uint8 a = 255) { Clear({r, g, b, a}); }
 	inline void Clear(uint32 color) { Clear(rgb{color});}
