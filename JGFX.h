@@ -17,6 +17,7 @@
 bool InitFuncPrimary(){
 	if (!glfwInit())
 		throw std::runtime_error("Failed to initialize GLFW");
+	return true;
 }
 
 bool InitFunc() {

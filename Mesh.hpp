@@ -663,7 +663,7 @@ namespace JGFX {
 		};
 
 		LLJGFX::VRef::Handle handle_ = {LLJGFX::INVALID_HANDLE };
-		std::unordered_map<std::string, VertexBuffer> bound_buffers;
+		std::unordered_map<std::string, VertexBuffer> bound_buffers = {};
 	public:
 		//Add or remove buffers
 		inline VertexCollection& AddBuffer(VertexBuffer&& dat, const std::string& name){
@@ -671,7 +671,6 @@ namespace JGFX {
 			if(bound_buffers.contains(name))
 				throw std::runtime_error("This name for a vertex buffer is already taken");
 #endif
-			//bound_buffers[name] = std::move(dat);
 			bound_buffers.insert({name, std::move(dat)});
 			LLJGFX::VRef::AttachVBuff(handle_, bound_buffers[name].handle());
 
@@ -726,7 +725,12 @@ namespace JGFX {
 
 		//Initialization
 		inline VertexCollection& Init() {
+#ifdef _MSC_VER
+			Clear();
+#else
 			this->~VertexCollection();
+#endif
+			bound_buffers = {};
 			handle_ = LLJGFX::VRef::Make();
 			return *this;
 		}
@@ -774,6 +778,16 @@ namespace JGFX {
 			LLJGFX::VRef::Delete(handle_);
 			handle_ = {LLJGFX::INVALID_HANDLE };
 		}
+
+#ifdef _MSC_VER
+		private:
+			void Clear() {
+				LLJGFX::VRef::Delete(handle_);
+				handle_ = { LLJGFX::INVALID_HANDLE };
+
+				bound_buffers.clear();
+			}
+#endif
 	};
 
 	/*
