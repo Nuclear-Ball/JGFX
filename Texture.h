@@ -34,9 +34,13 @@ namespace JGFX {
 			LLJGFX::Texture::Resize(handle_, new_size);
 			return *this;
 		}
-		inline Texture& Bind() const {
+		inline Texture& Bind() {
 			LLJGFX::BindFramebuffer(handle_);
-			return (Texture&)*this;
+			return *this;
+		}
+		inline const Texture& Bind() const {
+			LLJGFX::BindFramebuffer(handle_);
+			return *this;
 		}
 
 		inline Texture& SetFilteringMode(TxtFiltMode mode) {

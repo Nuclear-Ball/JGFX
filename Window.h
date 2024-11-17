@@ -19,9 +19,13 @@ namespace JGFX{
 		Window& ResetIcon()
 			{ LLJGFX::Window::ResetIconToDefault(handle_); return *this; }
 
-		inline Window& Bind() const {
+		inline Window& Bind(){
 			LLJGFX::BindFramebuffer(handle_);
-			return (Window&)*this;
+			return *this;
+		}
+		inline const Window& Bind() const {
+			LLJGFX::BindFramebuffer(handle_);
+			return *this;
 		}
 
 		inline pos2du16 size() const { return LLJGFX::Window::GetSize(handle_); }
