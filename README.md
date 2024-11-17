@@ -60,8 +60,11 @@ JGFX is a header-only library, so you only need to copy this repo to your includ
     -GLFW
     -GLAD (specifically for OpenGL 3.3)
     -STB Image
-Also it works(for now) only on linux with clang compiler and c++20 
-(at least its what it was tested with, so it might, or might not work with other compilers and operating systems)
+
+## Requirements 
+Compiler: Clang or MSVC,
+
+C++ version: 20 or higher
 
 ## User input handling
 It hasn't been implemented yet(but will be soon), so for now you can use raw GLFW functions for that. The GLFW window handle can be obtained from a JGFX handle like this:
